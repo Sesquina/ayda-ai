@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1083305661141",
+    "project_id": "aydaai-1a95f",
+    "storage_bucket": "aydaai-1a95f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083305661141:android:28fb7461550ea5af4bc85c",
+        "android_client_info": {
+          "package_name": "com.mycompany.ayda"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEyDpYJSld1KWDaPyIOA9_dXuncomekQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
