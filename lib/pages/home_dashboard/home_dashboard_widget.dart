@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -62,27 +63,10 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Image.asset(
-                'assets/images/photo-1579684453401-966b11832744?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NTI5NzY2ODF8&ixlib=rb-4.1.0&q=80&w=1080',
-                width: 40.0,
-                height: 40.0,
-                fit: BoxFit.contain,
-              ),
-              Text(
-                'ayda',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      font: GoogleFonts.urbanist(
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .fontStyle,
-                      ),
-                      color: Color(0xFF9489F5),
-                      fontSize: 28.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.bold,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                    ),
+                'assets/images/cairgiver_Logo.png',
+                width: 150.0,
+                height: 60.0,
+                fit: BoxFit.cover,
               ),
             ].divide(SizedBox(width: 12.0)),
           ),
@@ -240,7 +224,8 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
                                       alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Icon(
                                         Icons.favorite,
-                                        color: Color(0xFF24A891),
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent4,
                                         size: 32.0,
                                       ),
                                     ),
@@ -354,7 +339,8 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
                                         .titleMedium
                                         .fontStyle,
                                   ),
-                                  color: Colors.white,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
@@ -367,31 +353,50 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
-                                child: Container(
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x4E39D2C0),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.add_circle_outline,
-                                          color: Color(0xFF9489F5),
-                                          size: 28.0,
-                                        ),
-                                        Text(
-                                          'Add Symptom',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.manrope(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                        SymptomTrackerWidget.routeName);
+                                  },
+                                  child: Container(
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0x4E39D2C0),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(16.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.add_circle_outline,
+                                            color: Color(0xFF9489F5),
+                                            size: 28.0,
+                                          ),
+                                          Text(
+                                            'Add Symptom',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.manrope(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF9489F5),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -399,47 +404,68 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                                color: Color(0xFF9489F5),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                          ),
+                                        ].divide(SizedBox(height: 8.0)),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                               Expanded(
-                                child: Container(
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x4D6D5FED),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.medication,
-                                          color: Color(0xFF9489F5),
-                                          size: 28.0,
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      MedicationTrackerWidget.routeName,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
                                         ),
-                                        Text(
-                                          'Add Medication',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.manrope(
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(16.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.medication,
+                                            color: Color(0xFF9489F5),
+                                            size: 28.0,
+                                          ),
+                                          Text(
+                                            'Add Medication',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.manrope(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF9489F5),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -447,64 +473,66 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                                color: Color(0xFF9489F5),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                      ].divide(SizedBox(height: 8.0)),
+                                          ),
+                                        ].divide(SizedBox(height: 8.0)),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ].divide(SizedBox(width: 12.0)),
                           ),
-                          Container(
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: Color(0xCCFFFFFF),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.upload_file,
-                                    color: Color(0xFF9489F5),
-                                    size: 28.0,
-                                  ),
-                                  Text(
-                                    'Upload Document',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.manrope(
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                  UploadMedicalRecordsWidget.routeName);
+                            },
+                            child: Container(
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xCCFFFFFF),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.upload_file,
+                                      color: Color(0xFF9489F5),
+                                      size: 28.0,
+                                    ),
+                                    Text(
+                                      'Upload Document',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.manrope(
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: Color(0xFF9489F5),
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color: Color(0xFF9489F5),
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ].divide(SizedBox(height: 8.0)),
+                                    ),
+                                  ].divide(SizedBox(height: 8.0)),
+                                ),
                               ),
                             ),
                           ),
@@ -518,7 +546,10 @@ class _HomeDashboardWidgetState extends State<HomeDashboardWidget> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0x4D9489F5), Color(0x4E39D2C0)],
+                            colors: [
+                              FlutterFlowTheme.of(context).accent1,
+                              Color(0x4E39D2C0)
+                            ],
                             stops: [0.0, 1.0],
                             begin: AlignmentDirectional(1.0, -1.0),
                             end: AlignmentDirectional(-1.0, 1.0),

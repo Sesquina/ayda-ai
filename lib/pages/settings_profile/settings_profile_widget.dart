@@ -675,7 +675,7 @@ class _SettingsProfileWidgetState extends State<SettingsProfileWidget> {
                                                     .fontStyle,
                                           ),
                                           color: Color(0xFF0B191E),
-                                          fontSize: 16.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w500,
                                           fontStyle:

@@ -111,7 +111,7 @@ class _SymptomTrackerWidgetState extends State<SymptomTrackerWidget> {
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FlutterFlowTheme.of(context).tertiary,
                       boxShadow: [
                         BoxShadow(
                           blurRadius: 8.0,
@@ -331,7 +331,7 @@ class _SymptomTrackerWidgetState extends State<SymptomTrackerWidget> {
                                 borderWidth: 1.0,
                                 borderRadius: 12.0,
                                 margin: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                    15.0, 0.0, 0.0, 0.0),
                                 hidesUnderline: true,
                                 isSearchable: false,
                                 isMultiSelect: false,
@@ -607,24 +607,27 @@ class _SymptomTrackerWidgetState extends State<SymptomTrackerWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Symptom History',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                font: GoogleFonts.outfit(
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            'Symptom History',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  font: GoogleFonts.outfit(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
+                                  ),
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FlutterFlowTheme.of(context)
                                       .headlineSmall
                                       .fontStyle,
                                 ),
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .fontStyle,
-                              ),
+                          ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -677,7 +680,7 @@ class _SymptomTrackerWidgetState extends State<SymptomTrackerWidget> {
                               borderWidth: 1.0,
                               borderRadius: 8.0,
                               margin: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
+                                  10.0, 0.0, 0.0, 0.0),
                               hidesUnderline: true,
                               isSearchable: false,
                               isMultiSelect: false,
@@ -725,7 +728,7 @@ class _SymptomTrackerWidgetState extends State<SymptomTrackerWidget> {
                               borderWidth: 1.0,
                               borderRadius: 8.0,
                               margin: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
+                                  10.0, 0.0, 0.0, 0.0),
                               hidesUnderline: true,
                               isSearchable: false,
                               isMultiSelect: false,

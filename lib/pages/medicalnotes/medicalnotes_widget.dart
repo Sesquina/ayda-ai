@@ -266,7 +266,9 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                                         .titleMedium
                                                         .fontStyle,
                                               ),
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
@@ -278,7 +280,7 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                       ),
                                       Container(
                                         width: 80.0,
-                                        height: 24.0,
+                                        height: 31.86,
                                         decoration: BoxDecoration(
                                           color: Color(0x4D4B986C),
                                           borderRadius:
@@ -427,7 +429,9 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                                         .titleMedium
                                                         .fontStyle,
                                               ),
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
@@ -439,7 +443,7 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                       ),
                                       Container(
                                         width: 80.0,
-                                        height: 24.0,
+                                        height: 27.0,
                                         decoration: BoxDecoration(
                                           color: Color(0x4D928163),
                                           borderRadius:
@@ -588,7 +592,9 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                                         .titleMedium
                                                         .fontStyle,
                                               ),
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
@@ -600,7 +606,7 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                       ),
                                       Container(
                                         width: 80.0,
-                                        height: 24.0,
+                                        height: 33.34,
                                         decoration: BoxDecoration(
                                           color: Color(0x4C6D604A),
                                           borderRadius:
@@ -749,7 +755,9 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                                         .titleMedium
                                                         .fontStyle,
                                               ),
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
@@ -761,7 +769,7 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                       ),
                                       Container(
                                         width: 80.0,
-                                        height: 24.0,
+                                        height: 31.36,
                                         decoration: BoxDecoration(
                                           color: Color(0x4D928163),
                                           borderRadius:
@@ -907,7 +915,8 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                                       .titleMedium
                                                       .fontStyle,
                                             ),
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -1041,7 +1050,7 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
                     child: Container(
-                      width: 120.0,
+                      width: 62.27,
                       height: 56.0,
                       decoration: BoxDecoration(
                         color: Color(0xFF4B986C),
@@ -1069,26 +1078,6 @@ class _MedicalnotesWidgetState extends State<MedicalnotesWidget> {
                                 Icons.add_rounded,
                                 color: Colors.white,
                                 size: 24.0,
-                              ),
-                              Text(
-                                'Add Note',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      font: GoogleFonts.plusJakartaSans(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
                               ),
                             ].divide(SizedBox(width: 8.0)),
                           ),

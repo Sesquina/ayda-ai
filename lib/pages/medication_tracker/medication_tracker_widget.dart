@@ -172,7 +172,8 @@ class _MedicationTrackerWidgetState extends State<MedicationTrackerWidget> {
                                                       .titleMedium
                                                       .fontStyle,
                                             ),
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -323,7 +324,8 @@ class _MedicationTrackerWidgetState extends State<MedicationTrackerWidget> {
                                                       .titleMedium
                                                       .fontStyle,
                                             ),
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -474,7 +476,8 @@ class _MedicationTrackerWidgetState extends State<MedicationTrackerWidget> {
                                                       .titleMedium
                                                       .fontStyle,
                                             ),
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -596,7 +599,7 @@ class _MedicationTrackerWidgetState extends State<MedicationTrackerWidget> {
                                 width: 48.0,
                                 height: 48.0,
                                 decoration: BoxDecoration(
-                                  color: Color(0xB2FFFFFF),
+                                  color: FlutterFlowTheme.of(context).tertiary,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Align(
@@ -625,7 +628,8 @@ class _MedicationTrackerWidgetState extends State<MedicationTrackerWidget> {
                                                       .titleMedium
                                                       .fontStyle,
                                             ),
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -739,7 +743,7 @@ class _MedicationTrackerWidgetState extends State<MedicationTrackerWidget> {
                       onPressed: () {
                         print('Button pressed ...');
                       },
-                      text: '+ Add Medication',
+                      text: 'Add Medication',
                       icon: Icon(
                         Icons.add_rounded,
                         size: 24.0,

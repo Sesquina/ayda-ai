@@ -1,7 +1,7 @@
 // Export pages
-export '/pages/login1/login1_widget.dart' show Login1Widget;
-export '/pages/signup/signup_widget.dart' show SignupWidget;
-export '/pages/profilecreate/profilecreate_widget.dart'
+export '/pages/login/login1/login1_widget.dart' show Login1Widget;
+export '/pages/login/signup/signup_widget.dart' show SignupWidget;
+export '/pages/login/profilecreate/profilecreate_widget.dart'
     show ProfilecreateWidget;
 export '/pages/home_dashboard/home_dashboard_widget.dart'
     show HomeDashboardWidget;
