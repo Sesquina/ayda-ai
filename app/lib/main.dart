@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3A60C0)),
       ),
-      home: const Scaffold(
-        appBar: AppBar(title: Text('Ayda AI — Frontend (placeholder)')),
-        body: Center(child: Text('This is a placeholder Flutter app.')),
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Ayda AI — Frontend (placeholder)')),
+        body: const Center(child: Text('This is a placeholder Flutter app.')),
       ),
     );
   }
