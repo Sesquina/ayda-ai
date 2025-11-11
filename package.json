@@ -3,5 +3,9 @@
     "version": "0.0.1",
     "private": true,
     "description": "Repository utilities for Ayda AI (web helper package)",
-    "license": "UNLICENSED"
+    "license": "UNLICENSED",
+    "workspaces": [
+        "app",
+        "functions"
+    ]
 }

@@ -40,3 +40,34 @@
     at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2025-11-11T08:32:30.818Z] ----------------------------------------------------------------------
+[debug] [2025-11-11T08:32:30.820Z] Command:       /usr/local/share/nvm/versions/node/v22.17.0/bin/node /home/codespace/nvm/current/bin/firebase login
+[debug] [2025-11-11T08:32:30.820Z] CLI Version:   14.24.2
+[debug] [2025-11-11T08:32:30.820Z] Platform:      linux
+[debug] [2025-11-11T08:32:30.820Z] Node Version:  v22.17.0
+[debug] [2025-11-11T08:32:30.821Z] Time:          Tue Nov 11 2025 08:32:30 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-11-11T08:32:30.821Z] Env Overrides: GITHUB_API_URL, GITHUB_API_URL
+[debug] [2025-11-11T08:32:30.821Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[info] 
+[info] i  To change your preferences at any time, run `firebase logout` and `firebase login` again. 
+[debug] [2025-11-11T08:32:33.102Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2025-11-11T08:32:33.102Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"3b7ecda1-20a3-419e-aa99-96bb1ba07424"}
+[debug] [2025-11-11T08:32:33.377Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2025-11-11T08:32:33.377Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"fumprI2U-mz5jdx1mL6g0KLjqZFJwePW3ef5ftBoD5A"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    3B7EC
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=Nts4qlEe8HFULmhJ1dO0RSFxPILRmnV6_PIK2WgT5Js&session=3b7ecda1-20a3-419e-aa99-96bb1ba07424&attest=fumprI2U-mz5jdx1mL6g0KLjqZFJwePW3ef5ftBoD5A
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 
