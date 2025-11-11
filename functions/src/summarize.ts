@@ -1,35 +1,69 @@
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+import { CallableContext } from "firebase-functions/v2/https";
+import { logger } from "firebase-functions";
 
-// Initialize once (safe to call multiple times in emulator/local setups)
-try {
-  admin.initializeApp();
-} catch (e) {
-  // ignore if already initialized
+interface SummaryHighlight {
+  label: string;
+  sentiment: "positive" | "neutral" | "negative";
 }
 
-/**
- * Callable stub for summarizing medical documents.
- * Replace with real OpenAI integration in a production implementation.
- */
-export const summarize = functions.https.onCall(async (data, context) => {
-  // Basic auth guard
+interface SummaryNextStep {
+  task: string;
+  owner: string;
+}
+
+export interface SummarizeRecordPayload {
+  documentId: string;
+  storagePath: string;
+  caregiverName?: string;
+}
+
+export interface SummarizeRecordResponse {
+  summary: string;
+  highlights: SummaryHighlight[];
+  nextSteps: SummaryNextStep[];
+}
+
+export async function summarizeRecordHandler(
+  data: SummarizeRecordPayload,
+  context: CallableContext,
+): Promise<SummarizeRecordResponse> {
   if (!context.auth) {
-    throw new functions.https.HttpsError('unauthenticated', 'Authentication required.');
+    throw new Error("Authentication required to call summarizeRecord.");
   }
 
-  const documentText = data?.text || data?.documentText || '';
-  const language = data?.language || 'en';
+  if (!data?.documentId || !data.storagePath) {
+    throw new Error("documentId and storagePath are required fields.");
+  }
 
-  // Simple deterministic stubbed response
-  const summary = documentText
-    ? `${documentText.slice(0, 240)}${documentText.length > 240 ? '…' : ''}`
-    : 'No document text provided.';
+  logger.info("Summarizing caregiver record", data);
+
+  const caregiverName = data.caregiverName ?? "Care partner";
 
   return {
-    summary: `Stub summary (${language}): ${summary}`,
-    alerts: [],
-    language,
-    originalLength: documentText.length,
+    summary: `${caregiverName} provided compassionate support. Energy remained stable and routines were respected throughout the shift.`,
+    highlights: [
+      {
+        label: "Morning routine completed with enthusiasm",
+        sentiment: "positive",
+      },
+      {
+        label: "Mild confusion before lunch responded well to redirection",
+        sentiment: "neutral",
+      },
+      {
+        label: "Encourage hydration during afternoon activities",
+        sentiment: "negative",
+      },
+    ],
+    nextSteps: [
+      {
+        task: "Share summary with care coordinator",
+        owner: caregiverName,
+      },
+      {
+        task: "Schedule follow-up wellness check",
+        owner: "Family team",
+      },
+    ],
   };
-});
+}

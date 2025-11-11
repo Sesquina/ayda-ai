@@ -1,16 +1,11 @@
 {
-    "colors": {
-        "primary": "#3A60C0",
-        "secondary": "#6BB89D",
-        "accent": "#FF857A",
-        "background": "#F9F9F6",
-        "text": "#2D3748"
-    },
-    "roles": {
-        "serenity_indigo": "#3A60C0",
-        "healing_sage": "#6BB89D",
-        "coral_care": "#FF857A",
-        "linen_white": "#F9F9F6",
-        "midnight_slate": "#2D3748"
-    }
+  "primary": "#3A60C0",
+  "secondary": "#6BB89D",
+  "accent": "#FF857A",
+  "background": "#F9F9F6",
+  "text": "#2D3748",
+  "success": "#1FAA59",
+  "warning": "#FFB547",
+  "error": "#E04747",
+  "info": "#66B2FF"
 }
