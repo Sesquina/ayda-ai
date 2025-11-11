@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'core/router.dart';
+import 'core/theme/ayda_theme.dart';
 import 'core/theme.dart';
 import 'features/auth/presentation/login_screen.dart';
 import 'features/history/presentation/history_screen.dart';
@@ -21,6 +23,10 @@ class AydaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'Ayda AI',
+      theme: AydaTheme.light(),
+      routerConfig: appRouter,
     return MaterialApp(
       title: 'Ayda AI',
       theme: AydaTheme.lightTheme,
