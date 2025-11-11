@@ -140,6 +140,64 @@ All documents scoped by `ownerUid` and optional `orgId`. Strict rules enforce ow
 
 ---
 
+## 📊 Analytics dashboard & KPI pipeline
+
+The admin dashboard surfaces the outcomes that SBIR reviewers, partners, and investors care about:
+
+* caregiver comprehension lift and reading-level distribution
+* thumbs-up feedback rate trends
+* monthly red-flag totals
+* trial-matching conversions per organization
+
+### Metrics pipeline
+
+1. `summaries/{id}` documents now include a `COMPREHENSION_SCORE`, `readingLevel`, and `redFlagsCount` fields.
+2. The scheduled Cloud Function `aggregateOrgMetrics` (see `functions/src/aggregateMetrics.ts`) runs every 24 hours.
+3. It fans out across `summaries`, groups them by `orgId` and month, and stores rollups under `orgs/{orgId}/metrics/{yyyy-MM}`.
+4. The Flutter dashboard (`app/lib/features/admin/presentation/admin_screen.dart`) reads those rollups and renders cards plus a trend line.
+
+### Demo data for local previews
+
+Seed Firestore with the sample metrics in `functions/sample-data/demo_org_metrics.json`:
+
+```bash
+firebase firestore:documents:update orgs/demo_org/metrics/2024-10 \
+  avgReadingLevel=6.5 avgComprehension=0.83 feedbackPositiveRate=0.86 \
+  redFlagsTotal=9 caregiversCount=41 updatedAt=$(date +%s000)
+```
+
+Repeat for the additional months you want to showcase. The admin dashboard listens in real time and will refresh automatically.
+
+---
+
+## 💰 Business model & market sizing
+
+| Stream | Description | 2027 forecast |
+| ------ | ----------- | -------------- |
+| **B2B SaaS licenses** | Clinics pay per seat for comprehension analytics and dashboards | $50M ARR |
+| **API access** | Hospitals embed summarization & comprehension APIs into portals | $20M |
+| **Enterprise analytics** | Payers purchase aggregated literacy insights (de-identified) | $15M |
+| **Clinical trial referral fees** | Sponsors pay per qualified candidate | $10M |
+| **Consumer premium tier** | Caregivers upgrade for advanced reminders & bilingual coaching | $5M |
+
+Global health-literacy technology is a ~$20B TAM. Capturing even 0.5% positions Ayda beyond the $100M revenue mark required for a venture-scale valuation.
+
+---
+
+## 📈 Data & analytics strategy
+
+| Data type | Use | Value |
+| --------- | --- | ----- |
+| `COMPREHENSION_SCORE` logs | Quantifies literacy improvements for SBIR evidence | Clinical + regulatory proofs |
+| Reading-level trendlines | Highlights patient engagement and quality gaps | Provider & payer analytics |
+| Red-flag incidence | Tunes proactive alerts and risk detection | Safety and liability moat |
+| Bilingual translation feedback | Measures cultural resonance and accessibility | Global expansion story |
+| Trial-matching performance | Increases recruitment throughput | Pharma and life-sciences revenue |
+
+Longitudinal analytics unlock benchmarking ("Your caregivers improved comprehension by 28% this quarter"), population literacy indices for public-health partners, and predictive insights that link comprehension to readmission avoidance.
+
+---
+
 ## Getting started
 
 ### Prerequisites

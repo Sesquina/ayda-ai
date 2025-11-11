@@ -126,6 +126,11 @@ GoRouter _buildRouter() {
         name: 'admin',
         builder: (context, state) => const AdminScreen(),
       ),
+      GoRoute(
+        path: '/admin/metrics',
+        name: 'admin-metrics',
+        builder: (context, state) => const AdminScreen(),
+      ),
     ],
   );
 }

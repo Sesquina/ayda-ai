@@ -47,6 +47,10 @@ export const summarizeRecord = onCall({ cors: true, enforceAppCheck: false }, as
   // 5) LLM call (stub for now)
   const summaryText = `Summary placeholder for record ${recordId}.`; // TODO: call OpenAI with clean text
   const rl = readingLevelScore(summaryText);
+
+  // Simple comprehension heuristic: invert distance from target reading level (grade 8).
+  const comprehensionScore = Math.max(0, Math.min(1, 1 - Math.abs(rl - 8) / 10));
+
   const finalText = bilingualFormat(summaryText, lang);
 
   // 6) persist
@@ -60,6 +64,8 @@ export const summarizeRecord = onCall({ cors: true, enforceAppCheck: false }, as
     readingLevel: rl,
     sections: [{ title: "Main Findings", body: finalText }],
     redFlags: [],
+    redFlagsCount: 0,
+    COMPREHENSION_SCORE: comprehensionScore,
     createdAt: Date.now(),
   });
   return { summaryId: summaryRef.id };
@@ -143,3 +149,5 @@ export const matchTrials = onCall({ cors: true }, async (req) => {
   });
   return { matchId: doc.id, match };
 });
+
+export { aggregateOrgMetrics } from "./aggregateMetrics";
