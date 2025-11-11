@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "1083305661141",
+    "firebase_url": "https://aydaai-1a95f-default-rtdb.firebaseio.com",
+    "project_id": "aydaai-1a95f",
+    "storage_bucket": "aydaai-1a95f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083305661141:android:0a6665c7d5ea4d5e4bc85c",
+        "android_client_info": {
+          "package_name": "com.example.ayda_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083305661141-i2nj5splt401qcp93e9sts4irl50cu9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEyDpYJSld1KWDaPyIOA9_dXuncomekQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083305661141-i2nj5splt401qcp93e9sts4irl50cu9q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1083305661141-18n6sdekn6cno0lr7l1mud6lqudu4e5a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.ayda"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083305661141:android:28fb7461550ea5af4bc85c",
+        "android_client_info": {
+          "package_name": "com.mycompany.ayda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083305661141-b0iki5c4972utld6c8l9vh5h3s0gmbf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.ayda",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1083305661141-i2nj5splt401qcp93e9sts4irl50cu9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEyDpYJSld1KWDaPyIOA9_dXuncomekQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083305661141-i2nj5splt401qcp93e9sts4irl50cu9q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1083305661141-18n6sdekn6cno0lr7l1mud6lqudu4e5a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.ayda"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
