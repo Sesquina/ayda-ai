@@ -49,6 +49,25 @@ class AydaPrimaryButton extends StatelessWidget {
             .textTheme
             .bodyMedium
             ?.copyWith(fontWeight: FontWeight.w600, color: Colors.white),
+
+  @override
+  Widget build(BuildContext context) {
+    final buttonChild = icon != null
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon),
+              const SizedBox(width: 8),
+              Text(label),
+            ],
+          )
+        : Text(label);
+
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(isExpanded ? double.infinity : 0, 48),
       ),
       child: buttonChild,
     );

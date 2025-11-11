@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../upload/data/upload_record.dart';
 import '../../upload/data/upload_repository.dart';
 
+import '../../history/presentation/history_screen.dart';
+
 class SummaryScreenArguments {
   const SummaryScreenArguments({
     required this.documentId,
@@ -129,6 +131,83 @@ class SummaryScreen extends StatelessWidget {
           ),
         );
       },
+    required this.storagePath,
+  });
+
+  final String documentId;
+  final String storagePath;
+}
+
+class SummaryScreen extends StatelessWidget {
+  const SummaryScreen({super.key});
+
+  static const routeName = '/summary';
+
+  @override
+  Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    final summaryArgs = args is SummaryScreenArguments
+        ? args
+        : const SummaryScreenArguments(
+            documentId: 'demo-record-001',
+            storagePath: 'uploads/demo-record-001.txt',
+          );
+
+    final theme = Theme.of(context);
+    final highlights = <String>[
+      'Client completed all medication with minimal prompting.',
+      'Notable mood lift after morning walk and music therapy.',
+      'Mild confusion observed before dinner, resolved with reassurance.',
+    ];
+
+    final nextSteps = <String>[
+      'Share medication adherence with care coordinator.',
+      'Schedule additional music therapy sessions.',
+      'Monitor evening routines for potential triggers.',
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Session summary'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: () => Navigator.pushNamed(
+              context,
+              HistoryScreen.routeName,
+            ),
+            tooltip: 'View history',
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Summary for ${summaryArgs.documentId}',
+              style: theme.textTheme.headlineSmall,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Storage path: ${summaryArgs.storagePath}',
+              style: theme.textTheme.bodySmall,
+            ),
+            const SizedBox(height: 24),
+            _SummaryCard(
+              title: 'Key takeaways',
+              body: 'Caregiver support this shift focused on maintaining routine and reinforcing positive interactions. Overall sentiment is positive.',
+            ),
+            const SizedBox(height: 16),
+            _HighlightsSection(highlights: highlights),
+            const SizedBox(height: 16),
+            _NextStepsSection(nextSteps: nextSteps),
+            const SizedBox(height: 16),
+            _SentimentIndicator(score: 0.82),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -288,6 +367,10 @@ class _SentimentIndicator extends StatelessWidget {
                 valueColor:
                     AlwaysStoppedAnimation<Color>(theme.colorScheme.secondary),
               ),
+            CircularProgressIndicator(
+              value: score,
+              backgroundColor: theme.colorScheme.secondary.withOpacity(0.2),
+              valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.secondary),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -298,6 +381,7 @@ class _SentimentIndicator extends StatelessWidget {
                     displayScore == 0
                         ? 'Sentiment pending'
                         : 'Overall sentiment ${(displayScore * 100).round()}%',
+                    'Overall sentiment ${(score * 100).round()}%',
                     style: theme.textTheme.headlineSmall,
                   ),
                   const SizedBox(height: 8),
@@ -305,6 +389,7 @@ class _SentimentIndicator extends StatelessWidget {
                     displayScore == 0
                         ? 'Awaiting AI-generated sentiment once the summary completes.'
                         : 'Positive momentum detected. Keep reinforcing uplifting routines.',
+                    'Positive momentum detected. Keep reinforcing uplifting routines.',
                     style: theme.textTheme.bodyMedium,
                   ),
                 ],
