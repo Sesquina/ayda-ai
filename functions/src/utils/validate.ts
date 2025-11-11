@@ -1,29 +1,29 @@
 import { z } from "zod";
 
-export const zSummarizeInput = z.object({
-  recordId: z.string().min(1),
+export const zSummarizeRecordInput = z.object({
+  uid: z.string().min(1),
+  text: z.string().min(1),
+  orgId: z.string().min(1).optional(),
+  recordId: z.string().min(1).optional(),
   lang: z.enum(["en", "es"]).optional(),
 });
 
-export const zTriageInput = z.object({
-  ownerUid: z.string().min(1),
-  symptoms: z.array(z.string()).min(1),
+export const zTriageSymptomsInput = z.object({
+  uid: z.string().min(1),
+  orgId: z.string().min(1).optional(),
+  symptoms: z.array(z.string().min(1)).min(1),
   duration: z.string().min(1),
   vitals: z.record(z.any()).optional(),
   lang: z.enum(["en", "es"]).optional(),
 });
 
-export const zERScriptInput = z
-  .object({
-    sessionId: z.string().optional(),
-    recordId: z.string().optional(),
-  })
-  .refine((d) => d.sessionId || d.recordId, { message: "Provide sessionId or recordId" });
-
-export const zReminderInput = z.object({
-  reminderId: z.string().min(1),
+export const zGetMedicationRemindersInput = z.object({
+  uid: z.string().min(1),
+  orgId: z.string().min(1).optional(),
 });
 
-export const zTrialMatchInput = z.object({
+export const zMatchClinicalTrialsInput = z.object({
   profileId: z.string().min(1),
+  uid: z.string().min(1).optional(),
+  orgId: z.string().min(1).optional(),
 });

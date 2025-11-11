@@ -85,10 +85,10 @@ Firebase Auth • Firestore • Storage
   ↕
 Cloud Functions (TypeScript)
   - summarizeRecord()
-  - triageAssess()
-  - generateERScript()
-  - scheduleReminder()
-  - matchTrials()
+  - triageSymptoms()
+  - getMedicationReminders()
+  - matchClinicalTrials()
+  - aggregateOrgMetrics()
   - notifyFamily()
   - webhook handlers (Twilio/Meta)
   ↕
@@ -106,13 +106,15 @@ ClinicalTrials.gov ingestion cache
 * `orgs`: multi-tenant boundary for enterprise pilots
 * `records`: fileRef, ownerUid, orgId, status
 * `summaries`: recordId, sections, redFlags[], readingLevel, lang
-* `triage_sessions`: inputs, riskLevel, advice, erScriptId
+* `triage_logs`: inputs, riskLevel, advice, response latency
 * `er_scripts`: patient context, vitals text, medications, key phrases
 * `meds`: name, schedule, dose, reminders[]
 * `reminders`: medId or followUpId, channel, nextRun
+* `reminder_logs`: ownerUid, orgId, remindersReturned, delivery channel
 * `family_updates`: audience, channels, renderedText
 * `trial_profiles`: diagnosis, stage, biomarkers, inclusion/exclusion
 * `trial_matches`: profileId, trialId, matchScore
+* `trial_logs`: profileId, matchesReturned, topScore, followUpStatus
 * `feedback`: targetId, type, rating, comments
 * `audit_logs`: actor, action, resource, timestamp
 
@@ -137,6 +139,23 @@ All documents scoped by `ownerUid` and optional `orgId`. Strict rules enforce ow
 * Platform revenue through provider and payer APIs
 * APIs: summarize, triage, ER script, reminders, trial match
 * Admin dashboard for usage analytics and audit trails
+
+---
+
+## 🧠 Ayda Intelligence API
+
+The new callable wrappers (`AydaApi`) form the commercial core of the platform. Each endpoint is a productized capability with
+clear buyers and monetization paths.
+
+| Tier                        | Audience / Use case                                      | Pricing signal (target) |
+| -------------------------- | -------------------------------------------------------- | ----------------------- |
+| **Free (Consumer)**        | Individual caregivers running summaries and reminders    | $0                      |
+| **Pro (Clinician)**        | Multi-patient dashboard, red-flag alerts                 | $29–$49 per month       |
+| **Enterprise (Hospital)**  | Bulk API access, analytics exports, SSO, admin controls  | $2K–$10K per org / mo   |
+| **Research & SBIR**        | De-identified literacy datasets for grants and studies    | Custom agreements       |
+
+Every API call writes structured telemetry (`summaries`, `triage_logs`, `reminder_logs`, `trial_logs`) that powers the metric
+pipeline for SBIR evidence and VC diligence.
 
 ---
 

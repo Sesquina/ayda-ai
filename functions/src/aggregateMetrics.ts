@@ -1,12 +1,5 @@
 import { onSchedule } from "firebase-functions/v2/scheduler";
-import { getFirestore } from "firebase-admin/firestore";
-import { getApps, initializeApp } from "firebase-admin/app";
-
-if (!getApps().length) {
-  initializeApp();
-}
-
-const db = getFirestore();
+import { db } from "./utils/firebase";
 
 type SummaryDoc = {
   orgId?: string | null;

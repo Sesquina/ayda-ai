@@ -2,31 +2,62 @@ import 'package:cloud_functions/cloud_functions.dart';
 
 enum TriageRiskLevel { low, medium, high }
 
+class SummarySection {
+  const SummarySection({required this.title, required this.body});
+
+  factory SummarySection.fromJson(Map<String, dynamic> json) {
+    return SummarySection(
+      title: json['title'] as String? ?? '',
+      body: json['body'] as String? ?? '',
+    );
+  }
+
+  final String title;
+  final String body;
+}
+
 class SummarizeRecordResponse {
-  const SummarizeRecordResponse({required this.summaryId});
+  const SummarizeRecordResponse({
+    required this.summaryId,
+    required this.readingLevel,
+    required this.comprehensionScore,
+    required this.sections,
+  });
 
   factory SummarizeRecordResponse.fromJson(Map<String, dynamic> json) {
-    return SummarizeRecordResponse(summaryId: json['summaryId'] as String);
+    final rawSections = (json['sections'] as List<dynamic>? ?? [])
+        .map((item) => SummarySection.fromJson(item as Map<String, dynamic>))
+        .toList();
+    return SummarizeRecordResponse(
+      summaryId: json['summaryId'] as String? ?? '',
+      readingLevel: (json['readingLevel'] as num?)?.toDouble() ?? 0,
+      comprehensionScore: (json['comprehensionScore'] as num?)?.toDouble() ?? 0,
+      sections: rawSections,
+    );
   }
 
   final String summaryId;
+  final double readingLevel;
+  final double comprehensionScore;
+  final List<SummarySection> sections;
 }
 
-class TriageAssessResponse {
-  const TriageAssessResponse({
+class TriageSymptomsResponse {
+  const TriageSymptomsResponse({
     required this.sessionId,
     required this.riskLevel,
     required this.advice,
   });
 
-  factory TriageAssessResponse.fromJson(Map<String, dynamic> json) {
-    final rawRisk = (json['riskLevel'] as String?)?.toLowerCase() ?? 'medium';
-    return TriageAssessResponse(
-      sessionId: json['sessionId'] as String,
-      riskLevel: TriageRiskLevel.values.firstWhere(
-        (level) => level.name == rawRisk,
-        orElse: () => TriageRiskLevel.medium,
-      ),
+  factory TriageSymptomsResponse.fromJson(Map<String, dynamic> json) {
+    final risk = (json['riskLevel'] as String? ?? 'medium').toLowerCase();
+    final parsedLevel = TriageRiskLevel.values.firstWhere(
+      (value) => value.name == risk,
+      orElse: () => TriageRiskLevel.medium,
+    );
+    return TriageSymptomsResponse(
+      sessionId: json['sessionId'] as String? ?? '',
+      riskLevel: parsedLevel,
       advice: json['advice'] as String? ?? '',
     );
   }
@@ -36,65 +67,76 @@ class TriageAssessResponse {
   final String advice;
 }
 
-class GenerateErScriptResponse {
-  const GenerateErScriptResponse({
-    required this.erScriptId,
-    required this.text,
+class MedicationReminder {
+  const MedicationReminder({
+    required this.id,
+    required this.medication,
+    required this.schedule,
+    required this.channel,
   });
 
-  factory GenerateErScriptResponse.fromJson(Map<String, dynamic> json) {
-    return GenerateErScriptResponse(
-      erScriptId: json['erScriptId'] as String,
-      text: json['text'] as String? ?? '',
+  factory MedicationReminder.fromJson(Map<String, dynamic> json) {
+    return MedicationReminder(
+      id: json['id'] as String? ?? '',
+      medication: json['medication'] as String? ?? '',
+      schedule: json['schedule'] as String? ?? '',
+      channel: json['channel'] as String? ?? 'push',
     );
   }
 
-  final String erScriptId;
-  final String text;
+  final String id;
+  final String medication;
+  final String schedule;
+  final String channel;
 }
 
-class ScheduleReminderResponse {
-  const ScheduleReminderResponse({required this.ok});
+class GetMedicationRemindersResponse {
+  const GetMedicationRemindersResponse({required this.reminders});
 
-  factory ScheduleReminderResponse.fromJson(Map<String, dynamic> json) {
-    return ScheduleReminderResponse(ok: json['ok'] as bool? ?? false);
+  factory GetMedicationRemindersResponse.fromJson(Map<String, dynamic> json) {
+    final reminders = (json['reminders'] as List<dynamic>? ?? [])
+        .map((item) => MedicationReminder.fromJson(item as Map<String, dynamic>))
+        .toList();
+    return GetMedicationRemindersResponse(reminders: reminders);
   }
 
-  final bool ok;
+  final List<MedicationReminder> reminders;
 }
 
-class TrialMatch {
-  const TrialMatch({
+class ClinicalTrialMatch {
+  const ClinicalTrialMatch({
     required this.trialId,
     required this.title,
     required this.score,
+    required this.url,
   });
 
-  factory TrialMatch.fromJson(Map<String, dynamic> json) {
-    return TrialMatch(
+  factory ClinicalTrialMatch.fromJson(Map<String, dynamic> json) {
+    return ClinicalTrialMatch(
       trialId: json['trialId'] as String? ?? '',
       title: json['title'] as String? ?? '',
       score: (json['score'] as num?)?.toDouble() ?? 0,
+      url: json['url'] as String? ?? '',
     );
   }
 
   final String trialId;
   final String title;
   final double score;
+  final String url;
 }
 
-class MatchTrialsResponse {
-  const MatchTrialsResponse({required this.matchId, required this.match});
+class MatchClinicalTrialsResponse {
+  const MatchClinicalTrialsResponse({required this.matches});
 
-  factory MatchTrialsResponse.fromJson(Map<String, dynamic> json) {
-    return MatchTrialsResponse(
-      matchId: json['matchId'] as String,
-      match: TrialMatch.fromJson(json['match'] as Map<String, dynamic>),
-    );
+  factory MatchClinicalTrialsResponse.fromJson(Map<String, dynamic> json) {
+    final matches = (json['matches'] as List<dynamic>? ?? [])
+        .map((item) => ClinicalTrialMatch.fromJson(item as Map<String, dynamic>))
+        .toList();
+    return MatchClinicalTrialsResponse(matches: matches);
   }
 
-  final String matchId;
-  final TrialMatch match;
+  final List<ClinicalTrialMatch> matches;
 }
 
 class AydaApi {
@@ -104,65 +146,67 @@ class AydaApi {
   final FirebaseFunctions _functions;
 
   Future<SummarizeRecordResponse> summarizeRecord({
-    required String recordId,
+    required String uid,
+    required String text,
+    String? orgId,
+    String? recordId,
     String lang = 'en',
   }) async {
     final callable = _functions.httpsCallable('summarizeRecord');
     final result = await callable<Map<String, dynamic>>({
-      'recordId': recordId,
+      'uid': uid,
+      'text': text,
+      if (orgId != null) 'orgId': orgId,
+      if (recordId != null) 'recordId': recordId,
       'lang': lang,
     });
     return SummarizeRecordResponse.fromJson(result.data);
   }
 
-  Future<TriageAssessResponse> triageAssess({
-    required String ownerUid,
+  Future<TriageSymptomsResponse> triageSymptoms({
+    required String uid,
     required List<String> symptoms,
     required String duration,
     Map<String, dynamic>? vitals,
+    String? orgId,
     String lang = 'en',
   }) async {
-    final callable = _functions.httpsCallable('triageAssess');
+    final callable = _functions.httpsCallable('triageSymptoms');
     final result = await callable<Map<String, dynamic>>({
-      'ownerUid': ownerUid,
+      'uid': uid,
       'symptoms': symptoms,
       'duration': duration,
       if (vitals != null) 'vitals': vitals,
+      if (orgId != null) 'orgId': orgId,
       'lang': lang,
     });
-    return TriageAssessResponse.fromJson(result.data);
+    return TriageSymptomsResponse.fromJson(result.data);
   }
 
-  Future<GenerateErScriptResponse> generateErScript({
-    String? sessionId,
-    String? recordId,
+  Future<GetMedicationRemindersResponse> getMedicationReminders({
+    required String uid,
+    String? orgId,
   }) async {
-    final callable = _functions.httpsCallable('generateERScript');
+    final callable = _functions.httpsCallable('getMedicationReminders');
     final result = await callable<Map<String, dynamic>>({
-      if (sessionId != null) 'sessionId': sessionId,
-      if (recordId != null) 'recordId': recordId,
+      'uid': uid,
+      if (orgId != null) 'orgId': orgId,
     });
-    return GenerateErScriptResponse.fromJson(result.data);
+    return GetMedicationRemindersResponse.fromJson(result.data);
   }
 
-  Future<ScheduleReminderResponse> scheduleReminder({
-    required String reminderId,
-  }) async {
-    final callable = _functions.httpsCallable('scheduleReminder');
-    final result = await callable<Map<String, dynamic>>({
-      'reminderId': reminderId,
-    });
-    return ScheduleReminderResponse.fromJson(result.data);
-  }
-
-  Future<MatchTrialsResponse> matchTrials({
+  Future<MatchClinicalTrialsResponse> matchClinicalTrials({
     required String profileId,
+    String? uid,
+    String? orgId,
   }) async {
-    final callable = _functions.httpsCallable('matchTrials');
+    final callable = _functions.httpsCallable('matchClinicalTrials');
     final result = await callable<Map<String, dynamic>>({
       'profileId': profileId,
+      if (uid != null) 'uid': uid,
+      if (orgId != null) 'orgId': orgId,
     });
-    return MatchTrialsResponse.fromJson(result.data);
+    return MatchClinicalTrialsResponse.fromJson(result.data);
   }
 }
 

@@ -18,7 +18,7 @@ class TriageScreen extends StatelessWidget {
             Text('Tell us what is happening', style: AydaText.h1),
             const SizedBox(height: 12),
             Text(
-              'This screen will collect symptoms, duration, and vitals before calling the triageAssess function.',
+              'This screen will collect symptoms, duration, and vitals before calling the triageSymptoms function.',
               style: AydaText.body,
             ),
             const SizedBox(height: 24),

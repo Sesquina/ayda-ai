@@ -43,23 +43,18 @@ Add routes in `core/router.dart`:
 
 Create or complete these TypeScript functions with input validation and de-id util:
 
-- `summarizeRecord(recordId)`
-  - Inputs: `recordId`
-  - Steps: fetch Storage file → OCR if image → de-identify → term mapping → LLM summary → write `summaries/{id}` with sections and redFlags
+- `summarizeRecord({ uid, text, recordId?, lang })`
+  - De-identify text, call LLM, persist sections + `COMPREHENSION_SCORE` to `summaries/{id}`
 
-- `triageAssess(sessionId)`
-  - Inputs: `symptoms`, `duration`, `vitals?`
-  - Output: riskLevel, advice, followUp, redFlags
-  - Store in `triage_sessions/{id}`
+- `triageSymptoms({ uid, symptoms, duration, vitals? })`
+  - Rule-based risk level + optional LLM enrichment
+  - Store telemetry in `triage_logs/{id}` with advice + timestamps
 
-- `generateERScript(sessionId|recordId)`
-  - Compose a concise script: key complaints, meds, allergies, history, recent events
+- `getMedicationReminders({ uid })`
+  - Return normalized reminder payload and log access in `reminder_logs`
 
-- `scheduleReminder(reminderId)`
-  - Create ICS file or Google Calendar event. For SMS, enqueue to `notifyFamily`
-
-- `matchTrials(profileId)`
-  - Pull cached trials, apply inclusion/exclusion heuristic, write `trial_matches/{id}` with scores
+- `matchClinicalTrials({ profileId, uid? })`
+  - Score cached trials, persist matches in `trial_logs`
 
 - `notifyFamily(updateId)`
   - Channels: SMS, WhatsApp (Twilio or WhatsApp Cloud API). Store send status

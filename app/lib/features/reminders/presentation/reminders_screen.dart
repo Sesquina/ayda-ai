@@ -17,7 +17,7 @@ class RemindersScreen extends StatelessWidget {
             Text('Reminder schedule', style: AydaText.h1),
             const SizedBox(height: 12),
             Text(
-              'Upcoming reminders will appear here once scheduleReminder is fully wired.',
+              'Upcoming reminders will appear here once getMedicationReminders is fully wired.',
               style: AydaText.body,
             ),
           ],
