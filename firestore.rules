@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(data) { return isSignedIn() && data.ownerUid == request.auth.uid; }
+    function hasOrgAdmin(orgId) {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.hasAny(["org_admin"]);
+    }
+
+    match /users/{uid} {
+      allow read, write: if isSignedIn() && uid == request.auth.uid;
+    }
+
+    match /orgs/{orgId} {
+      allow read: if isSignedIn();
+      allow write: if hasOrgAdmin(orgId);
+    }
+
+    match /{coll}/{doc} {
+      allow read, write: if isOwner(resource.data)
+                         || (resource.data.orgId != null && hasOrgAdmin(resource.data.orgId));
+    }
+  }
+}

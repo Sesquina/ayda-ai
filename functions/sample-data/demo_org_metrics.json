@@ -1,0 +1,24 @@
+{
+  "orgs": {
+    "demo_org": {
+      "metrics": {
+        "2024-09": {
+          "avgReadingLevel": 6.8,
+          "avgComprehension": 0.78,
+          "feedbackPositiveRate": 0.82,
+          "redFlagsTotal": 12,
+          "caregiversCount": 34,
+          "updatedAt": 1725148800000
+        },
+        "2024-10": {
+          "avgReadingLevel": 6.5,
+          "avgComprehension": 0.83,
+          "feedbackPositiveRate": 0.86,
+          "redFlagsTotal": 9,
+          "caregiversCount": 41,
+          "updatedAt": 1727740800000
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+name: ayda_ai
+description: Ayda AI caregiver MVP scaffold
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_core: ^2.27.0
+  firebase_auth: ^4.17.3
+  cloud_firestore: ^4.13.0
+  firebase_storage: ^11.6.3
+  cloud_functions: ^4.6.4
+  google_fonts: ^6.2.1
+  go_router: ^13.2.4
+  fl_chart: ^0.66.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/fonts/
