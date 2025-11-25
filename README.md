@@ -1,10 +1,10 @@
-# Ayda AI
+# Medalyn
 
-Ayda AI is a caregiver assistant prototype built with Flutter and Firebase. The project demonstrates the login → upload → summary journey with mocked data while keeping the structure ready for production integrations.
+Medalyn is a caregiver assistant prototype built with Flutter and Firebase. The project demonstrates the login → upload → summary journey with mocked data while keeping the structure ready for production integrations.
 
-## 🌿 Ayda AI — Health Communication Platform
+## 🌿 Medalyn — Health Communication Platform
 
-Ayda is a **health communication layer** that converts unstructured medical data into structured, plain-language insights for families. The platform offers a web UI for caregivers and APIs that clinics, payers, and partners can embed.
+Medalyn is a **health communication layer** that converts unstructured medical data into structured, plain-language insights for families. The platform offers a web UI for caregivers and APIs that clinics, payers, and partners can embed.
 
 ### Core value
 
@@ -142,9 +142,9 @@ All documents scoped by `ownerUid` and optional `orgId`. Strict rules enforce ow
 
 ---
 
-## 🧠 Ayda Intelligence API
+## 🧠 Medalyn Intelligence API
 
-The new callable wrappers (`AydaApi`) form the commercial core of the platform. Each endpoint is a productized capability with
+The new callable wrappers (`MedalynApi`) form the commercial core of the platform. Each endpoint is a productized capability with
 clear buyers and monetization paths.
 
 | Tier                        | Audience / Use case                                      | Pricing signal (target) |
